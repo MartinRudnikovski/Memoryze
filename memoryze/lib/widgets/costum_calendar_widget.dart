@@ -32,26 +32,16 @@ class Calendar extends StatelessWidget{
     return SfCalendar(
       firstDayOfWeek: 1,
       view: CalendarView.month,
-      monthViewSettings: const MonthViewSettings(
-        showAgenda: true
-      ),
 
-      allowedViews: const [
-        CalendarView.day,
-        CalendarView.week,
-        CalendarView.month,
-      ],
 
       dataSource: _dataSource,
 
-      todayHighlightColor: Colors.red,
+      todayHighlightColor: Colors.red.shade900,
 
       cellBorderColor: Colors.transparent,
 
-      showDatePickerButton: true,
       showNavigationArrow: true,
       showCurrentTimeIndicator: true,
-      allowViewNavigation: true,
     );
   }
 
