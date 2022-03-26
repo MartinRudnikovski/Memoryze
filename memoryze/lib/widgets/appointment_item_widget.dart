@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:memoryze/screens/view_appointment_details_screen.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class AppointmentItemWidget extends StatefulWidget{
@@ -63,7 +64,16 @@ class _AppointmentItemWidget  extends State<AppointmentItemWidget> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               ElevatedButton(
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (cont) => ViewAppointmentDetailsScreen(
+                        appointment: widget.appointment,
+                      ),
+                    ),
+                  );
+                },
                 child: const Text(
                   'View',
                   style: TextStyle(

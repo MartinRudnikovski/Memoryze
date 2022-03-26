@@ -1,21 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TextInput extends StatefulWidget{
-  TextInput({Key? key, required this.hint}) : super(key: key);
-  String text = '';
-  String getDescription() => text;
-  final String hint;
+class UnselectableTextBox extends StatefulWidget{
+  const UnselectableTextBox({Key? key, required this.text}) : super(key: key);
+
+  final String text;
+
   @override
   State<StatefulWidget> createState() {
-    return _TextInput();
+    return _UnselectableTextBox();
   }
+
 }
 
-class _TextInput extends State<TextInput>{
-
-
-
+class _UnselectableTextBox extends State<UnselectableTextBox>{
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -26,9 +24,8 @@ class _TextInput extends State<TextInput>{
           height: 30,
           margin: const EdgeInsets.only(top: 10, bottom: 10),
           child: TextField(
-            decoration: InputDecoration(hintText: widget.hint),
-            onChanged: (text) => widget.text = text,
-            textInputAction: TextInputAction.next,
+            decoration: InputDecoration(hintText: widget.text),
+            enabled: false,
           ),
         )
       ],

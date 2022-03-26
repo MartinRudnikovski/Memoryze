@@ -48,7 +48,7 @@ class MainScreenState extends State<MainScreen>{
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           calendar,
-          Container(
+          SizedBox(
             child: AppointmentListWidget(appointments: Memoryze.appointments,),
             height: 362,
             width: 400,

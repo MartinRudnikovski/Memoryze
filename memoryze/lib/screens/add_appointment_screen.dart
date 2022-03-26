@@ -40,13 +40,21 @@ class AddAppointmentScreenState extends State<AddAppointmentScreen>{
 
           ElevatedButton(
             onPressed: (){
-              DateTime start = date.getDate();
-              TimeOfDay startT = startTime.getTime();
-              start.add(Duration(hours: startT.hour, minutes: startT.minute));
+              DateTime start = DateTime(
+                date.getDate().year,
+                date.getDate().month,
+                date.getDate().day,
+                startTime.getTime().hour,
+                startTime.getTime().minute,
+              );
 
-              DateTime end = date.getDate();
-              TimeOfDay endT = endTime.getTime();
-              end.add(Duration(hours: endT.hour, minutes: endT.minute));
+              DateTime end = DateTime(
+                date.getDate().year,
+                date.getDate().month,
+                date.getDate().day,
+                endTime.getTime().hour,
+                endTime.getTime().minute,
+              );
 
               Appointment a = Appointment(
                 startTime: start,
