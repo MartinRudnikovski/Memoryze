@@ -1,6 +1,6 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:memoryze/widgets/appointment_list_widget.dart';
 import 'package:memoryze/widgets/costum_calendar_widget.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
@@ -24,7 +24,7 @@ class MainScreenState extends State<MainScreen>{
     return Scaffold(
       appBar: AppBar(
         title: const Text('Memoryze'),
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.red.shade900,
       ),
 
       floatingActionButton: FloatingActionButton(
@@ -37,7 +37,6 @@ class MainScreenState extends State<MainScreen>{
             )
           );
 
-          print(a.startTime);
           setState(() {
             Memoryze.appointments.add(a);
           });
@@ -46,8 +45,10 @@ class MainScreenState extends State<MainScreen>{
       ),
 
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           calendar,
+          AppointmentListWidget(appointments: Memoryze.appointments,),
         ],
       ),
     );

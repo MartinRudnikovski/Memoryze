@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:memoryze/main.dart';
 import 'package:memoryze/widgets/date_picker_widget.dart';
 import 'package:memoryze/widgets/text_input_widget.dart';
 import 'package:memoryze/widgets/time_picker_widget.dart';
@@ -28,7 +27,7 @@ class AddAppointmentScreenState extends State<AddAppointmentScreen>{
     return Scaffold(
       appBar: AppBar(
         title: const Text('Memoryze'),
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.red.shade900,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -52,7 +51,7 @@ class AddAppointmentScreenState extends State<AddAppointmentScreen>{
               Appointment a = Appointment(
                 startTime: start,
                 endTime: end,
-                color: Colors.red,
+                color: Colors.red.shade900,
                 subject: title.getDescription(),
                 notes: description.getDescription()
               );
