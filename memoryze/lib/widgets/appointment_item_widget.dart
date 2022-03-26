@@ -20,14 +20,15 @@ class _AppointmentItemWidget  extends State<AppointmentItemWidget> {
     return Card(
       color: Colors.red.shade900,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                widget.appointment.subject,
+                widget.appointment.subject.length > 15 ?
+                widget.appointment.subject.substring(0, 15) + '...' : widget.appointment.subject,
                 style: const TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
@@ -56,6 +57,20 @@ class _AppointmentItemWidget  extends State<AppointmentItemWidget> {
                     color: Colors.grey.shade900
                 ),
               )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              ElevatedButton(
+                onPressed: (){},
+                child: const Text(
+                  'View',
+                  style: TextStyle(
+                    color: Colors.white
+                  ),
+                ),
+              ),
             ],
           )
         ],
