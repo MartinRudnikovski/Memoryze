@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:memoryze/widgets/appointment_list_widget.dart';
 import 'package:memoryze/widgets/costum_calendar_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 import '../main.dart';
@@ -29,11 +30,12 @@ class MainScreenState extends State<MainScreen>{
 
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
+        backgroundColor: Colors.red.shade900,
         onPressed: () async{
           Appointment a = await Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => const AddAppointmentScreen(),
+              builder: (context) => const AddAppointmentScreen(),
             )
           );
 
@@ -48,10 +50,10 @@ class MainScreenState extends State<MainScreen>{
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           calendar,
-          SizedBox(
+          Flexible(
+            fit: FlexFit.tight,
+            flex: 1,
             child: AppointmentListWidget(appointments: Memoryze.appointments,),
-            height: 362,
-            width: 400,
           ),
         ],
       ),

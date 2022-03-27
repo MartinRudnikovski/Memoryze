@@ -32,8 +32,11 @@ class Calendar extends StatelessWidget{
     return SfCalendar(
       firstDayOfWeek: 1,
       view: CalendarView.month,
-
-
+      selectionDecoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.red.shade900,
+        ),
+      ),
       dataSource: _dataSource,
 
       todayHighlightColor: Colors.red.shade900,

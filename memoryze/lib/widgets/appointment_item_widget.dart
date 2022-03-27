@@ -63,21 +63,28 @@ class _AppointmentItemWidget  extends State<AppointmentItemWidget> {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              ElevatedButton(
-                onPressed: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (cont) => ViewAppointmentDetailsScreen(
-                        appointment: widget.appointment,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.transparent),
+                  ),
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (cont) => ViewAppointmentDetailsScreen(
+                          appointment: widget.appointment,
+                        ),
                       ),
+                    );
+                  },
+                  child: const Text(
+                    'View',
+                    style: TextStyle(
+                      color: Colors.white
                     ),
-                  );
-                },
-                child: const Text(
-                  'View',
-                  style: TextStyle(
-                    color: Colors.white
                   ),
                 ),
               ),

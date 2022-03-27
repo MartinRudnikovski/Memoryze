@@ -14,21 +14,21 @@ class TextInput extends StatefulWidget{
 
 class _TextInput extends State<TextInput>{
 
-
-
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          width: 360,
-          height: 30,
-          margin: const EdgeInsets.only(top: 10, bottom: 10),
-          child: TextField(
-            decoration: InputDecoration(hintText: widget.hint),
-            onChanged: (text) => widget.text = text,
-            textInputAction: TextInputAction.next,
+        Flexible(
+          flex: 1,
+          fit: FlexFit.tight,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: TextField(
+              decoration: InputDecoration(hintText: widget.hint),
+              onChanged: (text) => widget.text = text,
+              textInputAction: TextInputAction.next,
+            ),
           ),
         )
       ],

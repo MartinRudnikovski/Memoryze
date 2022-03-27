@@ -15,6 +15,9 @@ class Memoryze extends StatelessWidget{
       title: 'Memoryze',
       themeMode: ThemeMode.system,
       darkTheme: ThemeData.dark(),
+      theme: ThemeData(
+        primaryColor: Colors.red.shade900
+      ),
       home: const MainScreen(),
     );
   }

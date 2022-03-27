@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:memoryze/widgets/unselectable_text_box.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
@@ -32,9 +33,6 @@ class _ViewAppointmentDetailsScreen extends State<ViewAppointmentDetailsScreen> 
 
         children: [
           UnselectableTextBox(
-            text: widget.appointment.subject
-          ),
-          UnselectableTextBox(
             text: widget.appointment.startTime.day.toString() + '.' +
                 widget.appointment.startTime.month.toString() + '.' +
                 widget.appointment.startTime.year.toString() + ' ' +
@@ -51,6 +49,42 @@ class _ViewAppointmentDetailsScreen extends State<ViewAppointmentDetailsScreen> 
           UnselectableTextBox(
               text: widget.appointment.notes != null ? widget.appointment.notes.toString() : 'no description'
           ),
+
+          widget.appointment.location != null ?
+
+          SizedBox(
+
+            width: 400,
+            height: 200,
+
+            child:
+            
+            GoogleMap(
+              initialCameraPosition: const CameraPosition(
+                target: LatLng(41.997345, 21.427996),
+                zoom: 11.5,
+              ),
+              markers: {
+                Marker(
+                  markerId: MarkerId(widget.appointment.subject),
+                  infoWindow: InfoWindow(title: widget.appointment.subject),
+                  icon: BitmapDescriptor.defaultMarkerWithHue(
+                    BitmapDescriptor.hueRed
+                  ),
+                  position: LatLng(
+                    double.parse(widget.appointment.location!.split('|')[0]),
+                    double.parse(widget.appointment.location!.split('|')[1]),
+                  ),
+                )
+              },
+              myLocationButtonEnabled: true,
+              mapToolbarEnabled: false,
+
+
+            ),
+          )
+          :
+          const UnselectableTextBox(text: 'no location provided.'),
         ],
       ),
     );

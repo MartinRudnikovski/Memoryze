@@ -19,10 +19,9 @@ class _UnselectableTextBox extends State<UnselectableTextBox>{
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          width: 360,
-          height: 30,
-          margin: const EdgeInsets.only(top: 10, bottom: 10),
+        Flexible(
+          flex: 1,
+          fit: FlexFit.tight,
           child: TextField(
             decoration: InputDecoration(hintText: widget.text),
             enabled: false,

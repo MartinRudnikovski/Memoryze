@@ -40,16 +40,18 @@ class _TimePicker extends State<TimePicker>{
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Container(
-          width: 360,
-          height: 30,
-          margin: const EdgeInsets.only(top: 10, bottom: 10),
-          child: TextFormField(
-            onTap: editTime,
-            readOnly: true,
-            enableInteractiveSelection: false,
-            controller: widget.timeController,
-            decoration: InputDecoration(hintText: widget.hint),
+        Flexible(
+          fit: FlexFit.tight,
+          flex: 1,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10,),
+            child: TextFormField(
+              onTap: editTime,
+              readOnly: true,
+              enableInteractiveSelection: false,
+              controller: widget.timeController,
+              decoration: InputDecoration(hintText: widget.hint),
+            ),
           ),
         ),
       ],
