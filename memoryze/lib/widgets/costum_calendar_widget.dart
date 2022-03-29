@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class _DataSource extends CalendarDataSource {
@@ -32,8 +34,11 @@ class Calendar extends StatelessWidget{
     return SfCalendar(
       firstDayOfWeek: 1,
       view: CalendarView.month,
-
-
+      selectionDecoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.red.shade900,
+        ),
+      ),
       dataSource: _dataSource,
 
       todayHighlightColor: Colors.red.shade900,

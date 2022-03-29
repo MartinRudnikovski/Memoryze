@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:memoryze/screens/view_appointment_details_screen.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class AppointmentItemWidget extends StatefulWidget{
-  const AppointmentItemWidget({Key? key, required this.appointment}) : super(key: key);
+  const AppointmentItemWidget({Key? key, required this.appointment, required this.index}) : super(key: key);
 
   final Appointment appointment;
+  final int index;
 
   @override
   State<StatefulWidget> createState() {
@@ -20,14 +22,15 @@ class _AppointmentItemWidget  extends State<AppointmentItemWidget> {
     return Card(
       color: Colors.red.shade900,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                widget.appointment.subject,
+                widget.appointment.subject.length > 15 ?
+                widget.appointment.subject.substring(0, 15) + '...' : widget.appointment.subject,
                 style: const TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
@@ -56,6 +59,37 @@ class _AppointmentItemWidget  extends State<AppointmentItemWidget> {
                     color: Colors.grey.shade900
                 ),
               )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.transparent),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (cont) => ViewAppointmentDetailsScreen(
+                          appointment: widget.appointment,
+                          index: widget.index,
+                        ),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    'View',
+                    style: TextStyle(
+                      color: Colors.white
+                    ),
+                  ),
+                ),
+              ),
             ],
           )
         ],

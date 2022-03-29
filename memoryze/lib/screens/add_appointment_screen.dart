@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:memoryze/widgets/date_picker_widget.dart';
 import 'package:memoryze/widgets/text_input_widget.dart';
 import 'package:memoryze/widgets/time_picker_widget.dart';
@@ -21,6 +22,10 @@ class AddAppointmentScreenState extends State<AddAppointmentScreen>{
   final TimePicker startTime = TimePicker(hint: 'start time',);
   final TimePicker endTime = TimePicker(hint: 'end time',);
   final TextInput description = TextInput(hint: 'description');
+  
+  //Map things
+  Marker? location;
+  LatLng? position;
 
   @override
   Widget build(BuildContext context) {
@@ -37,23 +42,60 @@ class AddAppointmentScreenState extends State<AddAppointmentScreen>{
           startTime,
           endTime,
           description,
+          Flexible(
+            fit: FlexFit.tight,
+            flex: 3,
+            child: GoogleMap(
+              initialCameraPosition: const CameraPosition(
+                target: LatLng(41.997345, 21.427996),
+                zoom: 11.5,
+              ),
+
+              markers: { if(location != null ) location!.clone()},
+              onTap: (latLng) {
+                setState(() {
+                  position = latLng;
+                  location = Marker(
+                    markerId: const MarkerId('location'),
+                    infoWindow: const InfoWindow(title: 'Location'),
+                    icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+                    position: latLng,
+                  );
+                });
+              },
+            ),
+          ),
+
 
           ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.red.shade900),
+            ),
             onPressed: (){
-              DateTime start = date.getDate();
-              TimeOfDay startT = startTime.getTime();
-              start.add(Duration(hours: startT.hour, minutes: startT.minute));
+              DateTime start = DateTime(
+                date.getDate().year,
+                date.getDate().month,
+                date.getDate().day,
+                startTime.getTime().hour,
+                startTime.getTime().minute,
+              );
 
-              DateTime end = date.getDate();
-              TimeOfDay endT = endTime.getTime();
-              end.add(Duration(hours: endT.hour, minutes: endT.minute));
+              DateTime end = DateTime(
+                date.getDate().year,
+                date.getDate().month,
+                date.getDate().day,
+                endTime.getTime().hour,
+                endTime.getTime().minute,
+              );
 
               Appointment a = Appointment(
+                location: position != null ? position!.latitude.toString() + '|' + position!.longitude.toString() : null,
                 startTime: start,
                 endTime: end,
                 color: Colors.red.shade900,
                 subject: title.getDescription(),
-                notes: description.getDescription()
+                notes: description.getDescription(),
+                id: title.getDescription() + startTime.getTimeString(),
               );
 
               Navigator.pop(context, a);

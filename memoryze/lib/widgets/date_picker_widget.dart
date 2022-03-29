@@ -45,16 +45,18 @@ class _DatePicker extends State<DatePicker>{
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Container(
-          width: 360,
-          height: 30,
-          margin: const EdgeInsets.only(top: 10, bottom: 10),
-          child: TextFormField(
-            onTap: editDate,
-            readOnly: true,
-            enableInteractiveSelection: false,
-            controller: widget.controller,
-            decoration: InputDecoration(hintText: widget.hint),
+        Flexible(
+          flex: 1,
+          fit: FlexFit.tight,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: TextFormField(
+              onTap: editDate,
+              readOnly: true,
+              enableInteractiveSelection: false,
+              controller: widget.controller,
+              decoration: InputDecoration(hintText: widget.hint),
+            ),
           ),
         ),
       ],
