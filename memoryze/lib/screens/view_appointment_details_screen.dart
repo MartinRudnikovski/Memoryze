@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:hive/hive.dart';
 import 'package:memoryze/widgets/unselectable_text_box.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class ViewAppointmentDetailsScreen extends StatefulWidget{
-  const ViewAppointmentDetailsScreen({Key? key, required this.appointment}) : super(key: key);
+  const ViewAppointmentDetailsScreen({Key? key, required this.appointment, required this.index}) : super(key: key);
 
   final Appointment appointment;
+  final int index;
 
   @override
   State<StatefulWidget> createState() {
@@ -22,8 +24,6 @@ class _ViewAppointmentDetailsScreen extends State<ViewAppointmentDetailsScreen> 
       appBar: AppBar(
         backgroundColor: Colors.red.shade900,
         title: Text(
-          widget.appointment.subject.length > 15 ?
-          widget.appointment.subject.substring(0, 15) :
           widget.appointment.subject
         ),
       ),
@@ -85,6 +85,25 @@ class _ViewAppointmentDetailsScreen extends State<ViewAppointmentDetailsScreen> 
           )
           :
           const UnselectableTextBox(text: 'no location provided.'),
+
+          ElevatedButton(
+
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.red.shade900),
+            ),
+            onPressed: () async{
+              print(widget.appointment.id.toString());
+              await Hive.box('appointments').deleteAt(widget.index);
+              setState((){});
+              Navigator.pop(context);
+            },
+            child: const Text(
+              'Delete',
+              style: TextStyle(
+                  color: Colors.white
+              ),
+            ),
+          ),
         ],
       ),
     );

@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class _DataSource extends CalendarDataSource {

@@ -23,7 +23,6 @@ class AddAppointmentScreenState extends State<AddAppointmentScreen>{
   final TimePicker endTime = TimePicker(hint: 'end time',);
   final TextInput description = TextInput(hint: 'description');
   
-  
   //Map things
   Marker? location;
   LatLng? position;
@@ -95,7 +94,8 @@ class AddAppointmentScreenState extends State<AddAppointmentScreen>{
                 endTime: end,
                 color: Colors.red.shade900,
                 subject: title.getDescription(),
-                notes: description.getDescription()
+                notes: description.getDescription(),
+                id: title.getDescription() + startTime.getTimeString(),
               );
 
               Navigator.pop(context, a);

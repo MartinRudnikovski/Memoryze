@@ -4,9 +4,10 @@ import 'package:memoryze/screens/view_appointment_details_screen.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class AppointmentItemWidget extends StatefulWidget{
-  const AppointmentItemWidget({Key? key, required this.appointment}) : super(key: key);
+  const AppointmentItemWidget({Key? key, required this.appointment, required this.index}) : super(key: key);
 
   final Appointment appointment;
+  final int index;
 
   @override
   State<StatefulWidget> createState() {
@@ -70,12 +71,13 @@ class _AppointmentItemWidget  extends State<AppointmentItemWidget> {
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.transparent),
                   ),
-                  onPressed: (){
+                  onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (cont) => ViewAppointmentDetailsScreen(
                           appointment: widget.appointment,
+                          index: widget.index,
                         ),
                       ),
                     );
