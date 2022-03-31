@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive/hive.dart';
@@ -7,6 +8,28 @@ import 'screens/main_screen.dart';
 void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(MemoryzeAppointmentAdapter());
+
+  AwesomeNotifications().initialize('', [
+    NotificationChannel(
+      channelKey: 'basic_channel',
+      channelName: 'Basic Notifications',
+      defaultColor: Colors.deepOrange,
+      importance: NotificationImportance.High,
+      channelShowBadge: true,
+      channelDescription: '',
+    ),
+    NotificationChannel(
+      channelKey: 'scheduled_channel',
+      channelName: 'Scheduled Notifications',
+      defaultColor: Colors.deepOrange,
+      locked: true,
+      importance: NotificationImportance.High,
+      channelShowBadge: true,
+      channelDescription: '',
+
+    )
+  ],);
+
   runApp(const Memoryze());
 }
 
