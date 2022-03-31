@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:memoryze/models/memoryze_appointment.dart';
+import 'package:memoryze/models/notifications.dart';
 import 'package:memoryze/widgets/appointment_list_widget.dart';
 import 'package:memoryze/widgets/costum_calendar_widget.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
@@ -57,6 +58,8 @@ class MainScreenState extends State<MainScreen>{
                 description: a.notes,
                 location: a.location
             ));
+
+            createScheduledNotification(a);
           }
         },
       ),
